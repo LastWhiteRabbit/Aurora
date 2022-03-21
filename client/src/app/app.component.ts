@@ -18,7 +18,7 @@ export class AppComponent implements OnInit{
     }
 
     getTracks(){
-      this.http.get('http://localhost:5001/api/tracks').subscribe(x => {
+      this.http.get('https://localhost:5001/api/track').subscribe(x => {
         this.tracks=x;
       }, error => {
         console.log(error);
