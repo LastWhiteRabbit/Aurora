@@ -1,5 +1,6 @@
 ﻿using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,24 +11,26 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    public class TrackController : BaseApiController
+    public class UsersController : BaseApiController
     {
         private readonly DataContext _db;
 
-        public TrackController(DataContext db)
+        public UsersController(DataContext db)
         {
             _db = db;
         }
         
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Track>>> GetTracks()
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<AppUser>>> GetTracks()
         {
-            return await _db.Tracks.ToListAsync();
+            return await _db.Users.ToListAsync();
         }
+        [Authorize]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Track>> GetTracks(int id)
+        public async Task<ActionResult<AppUser>> GetTracks(int id)
         {
-            return await _db.Tracks.FindAsync(id);
+            return await _db.Users.FindAsync(id);
         }
 
     }
