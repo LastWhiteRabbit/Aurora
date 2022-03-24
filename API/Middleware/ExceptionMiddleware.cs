@@ -1,4 +1,6 @@
-﻿using API.Errors;
+﻿using API.Data;
+using API.Entities;
+using API.Errors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -13,18 +15,20 @@ namespace API.Middleware
 {
     public class ExceptionMiddleware
     {
+        //private readonly DataContext _context;
         private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionMiddleware> _logger;
         private readonly IHostEnvironment _env;
 
         public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
         {
+            //_context = context;
             _next = next;
             _logger = logger;
             _env = env;
         }
 
-        public async Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context, DataContext _context)
         {
             try
             {
@@ -43,6 +47,15 @@ namespace API.Middleware
                 var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
                 var json = JsonSerializer.Serialize(response, options);
+
+                _context.Add(new ExceptionHandlingData
+                {
+                    Details = response.Details,
+                    Message = response.Message,
+                    StatusCode = response.StatusCode
+                });
+                _context.SaveChanges();
+
 
                 await context.Response.WriteAsync(json);
             }

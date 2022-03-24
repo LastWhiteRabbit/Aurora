@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.Entities
 {
-    public class ExeptionHandlingData
+    public class ExceptionHandlingData
     {
         public int Id { get; set; }
         public int StatusCode { get; set; }
