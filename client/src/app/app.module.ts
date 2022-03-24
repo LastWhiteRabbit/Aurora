@@ -9,6 +9,8 @@ import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import {AppRoutingModule} from "./app-routing.module";
+import {ToastrModule} from "ngx-toastr";
+import {SharedModule} from "./_modules/shared.module";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,7 @@ import {AppRoutingModule} from "./app-routing.module";
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    BsDropdownModule.forRoot()
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

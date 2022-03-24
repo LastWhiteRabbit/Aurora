@@ -8,16 +8,24 @@ import {ArtistsComponent} from "./artists/artists.component";
 import {GenresComponent} from "./genres/genres.component";
 import {AlbumsComponent} from "./albums/albums.component";
 import {PlaylistsComponent} from "./playlists/playlists.component";
+import {AuthGuard} from "./_guards/auth.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'tracks', component: TrackListComponent},
-  {path: 'tracks/:id', component: TrackDetailComponent},
-  {path: 'artists', component: ArtistsComponent},
-  {path: 'genres', component: GenresComponent},
-  {path: 'albums', component: AlbumsComponent},
-  {path: 'playlists', component: PlaylistsComponent},
-  {path: 'messages', component: MessagesComponent},
+  {
+    path:'',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children:[
+      {path: 'tracks', component: TrackListComponent, canActivate: [AuthGuard]},
+      {path: 'tracks/:id', component: TrackDetailComponent},
+      {path: 'artists', component: ArtistsComponent},
+      {path: 'genres', component: GenresComponent},
+      {path: 'albums', component: AlbumsComponent},
+      {path: 'playlists', component: PlaylistsComponent},
+      {path: 'messages', component: MessagesComponent},
+    ]
+  },
   {path: '**', component: HomeComponent, pathMatch: 'full'},
 ];
 
