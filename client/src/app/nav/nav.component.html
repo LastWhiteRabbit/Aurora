@@ -24,6 +24,9 @@
             <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
           </li>
         </ng-container>
+        <li *ngIf="(accountService.currentUser$  | async) === null" class="nav-item">
+          <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
+        </li>
       </ul>
 
 

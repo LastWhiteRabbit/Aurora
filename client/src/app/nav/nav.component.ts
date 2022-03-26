@@ -20,10 +20,7 @@ export class NavComponent implements OnInit {
   login(){
     this.accountService.login(this.model).subscribe(x=>{
       this.router.navigateByUrl('/tracks');
-      }, error =>{
-        console.log(error);
-        this.toastr.error(error.error);
-    })
+      })
   }
 
   logout(){
