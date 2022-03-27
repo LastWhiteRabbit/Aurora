@@ -16,5 +16,7 @@ namespace API.Entities
         [Required]
         public string AlbumName { get; set; }
         public int AlbumLength { get; set; }
+        public DateTime Created { get; set; }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,5 +14,7 @@ namespace API.Entities
         [Required]
         public string PlaylistName { get; set; }
         public List<Track> PlaylistTrack { get; set; }
+        public DateTime Created { get; set; } = DateTime.Now;
+
     }
 }
