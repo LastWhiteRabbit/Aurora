@@ -1,5 +1,6 @@
 ﻿using API.Data;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,22 +13,23 @@ namespace API.Controllers
 {
     public class TrackController : BaseApiController
     {
-        private readonly DataContext _db;
+        private readonly ITrackRepository _trackRepository;
 
-        public TrackController(DataContext db)
+        public TrackController(ITrackRepository trackRepository)
         {
-            _db = db;
+            _trackRepository = trackRepository;
         }
         
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Track>>> GetTracks()
         {
-            return await _db.Tracks.ToListAsync();
+            var tracks = await _trackRepository.GetTracksAsync();
+            return Ok(tracks);
         }
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Track>> GetTracks(int id)
+        [HttpGet("{trackName}")]
+        public async Task<ActionResult<Track>> GetTracks(string trackName)
         {
-            return await _db.Tracks.FindAsync(id);
+            return await _trackRepository.GetTrackByNameAsync(trackName);
         }
 
     }
