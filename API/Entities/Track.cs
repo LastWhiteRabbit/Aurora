@@ -24,6 +24,6 @@ namespace API.Entities
         public Artist Artist { get; set; }
 
         public Album Album { get; set; }
-        public string? About { get; set; }
+        public string About { get; set; }
     }
 }
