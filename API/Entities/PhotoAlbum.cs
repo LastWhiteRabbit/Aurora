@@ -14,7 +14,5 @@ namespace API.Entities
         public string Url { get; set; }
         public bool isMain { get; set; }
         public string PublicId { get; set; }
-        public Album Album { get; set; }
-        public int AlbumId { get; set; }
     }
 }

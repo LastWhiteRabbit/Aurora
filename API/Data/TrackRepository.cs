@@ -25,15 +25,15 @@ namespace API.Data
         public async Task<Track> GetTrackByNameAsync(string name)
         {
             return await _context.Tracks
-                .Include(x=>x.Genre)
-                .Include(x=>x.Album)
-                .Include(x=>x.Artist)
                 .SingleOrDefaultAsync(x => x.TrackName == name);
         }
 
         public async Task<IEnumerable<Track>> GetTracksAsync()
         {
-            return await _context.Tracks.ToListAsync();
+            return await _context.Tracks
+                .Include(x => x.Genres)
+                .Include(x => x.Artists)
+                .ToListAsync();
         }
 
         public async Task<bool> SaveAllAsync()

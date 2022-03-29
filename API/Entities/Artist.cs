@@ -13,13 +13,13 @@ namespace API.Entities
     {
         [Key]
         public int Id { get; set; }
-        [DisplayName("Artist name")]
         [Required]
         public string ArtistName { get; set; }
         public int ArtistAge { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Gender { get; set; }
         public string About { get; set; }
+        public byte[] Image { get; set; }
 
         public int GetAge()
         {

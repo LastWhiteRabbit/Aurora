@@ -10,11 +10,10 @@ namespace API.Entities
     {
         [Key]
         public int Id { get; set; }
-        [DisplayName("Playlist name")]
         [Required]
         public string PlaylistName { get; set; }
-        public List<Track> PlaylistTrack { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
+        public ICollection<PlaylistTrack> PlaylistTracks { get; set; }
 
     }
 }

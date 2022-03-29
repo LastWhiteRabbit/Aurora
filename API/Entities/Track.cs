@@ -17,13 +17,8 @@ namespace API.Entities
         public string TrackName { get; set; }
         [DisplayName("Track length")]
         public string Length { get; set; }
-        public int GenreId { get; set; }
-        [ForeignKey("GenreId")]
-        public virtual Genre Genre { get; set; }
-
-        public Artist Artist { get; set; }
-
-        public Album Album { get; set; }
         public string About { get; set; }
+        public ICollection<TrackGenre> Genres { get; set; }
+        public ICollection<TrackArtist> Artists { get; set; }
     }
 }
