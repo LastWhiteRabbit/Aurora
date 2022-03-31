@@ -1,0 +1,42 @@
+<div class="row" *ngIf="member">
+  <div class="col-4">
+    <div class="card">
+      <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.username}}"
+           class="card-img-top img-thumbnail">
+      <div class="card-body">
+        <div>
+          <strong>Last online</strong>
+          <p>{{member.lastActive}}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Add</button>
+          <button class="btn btn-success">Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <tabset class="member-tabset">
+        <tab heading="About {{member.username}}">
+          <h4>Description</h4>
+          <p>{{member.username}}</p>
+        </tab>
+      <tab heading="Albums">
+        <h4>Albums</h4>
+        <p>Albums go here</p>
+      </tab>
+      <tab heading="Playlists">
+        <h4>Playlists</h4>
+        <p>Playlists go here</p>
+      </tab>
+      <tab heading="Messages">
+        <h4>Messages</h4>
+        <p>Messages go here</p>
+      </tab>
+    </tabset>
+  </div>
+
+</div>

@@ -1,5 +1,6 @@
 ﻿using API.Entities;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace API.Data
     public class TrackRepository : ITrackRepository
     {
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-        public TrackRepository(DataContext context)
+        public TrackRepository(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<Track> GetTrackByIdAsync(int id)
@@ -28,12 +31,11 @@ namespace API.Data
                 .SingleOrDefaultAsync(x => x.TrackName == name);
         }
 
-        public async Task<IEnumerable<Track>> GetTracksAsync()
+        public async Task<IEnumerable<TrackDto>> GetTracksAsync()
         {
-            return await _context.Tracks
-                .Include(x => x.Genres)
-                .Include(x => x.Artists)
-                .ToListAsync();
+            var result = await _context.Tracks.ToListAsync();
+
+            return _mapper.Map<List<TrackDto>>(result);
         }
 
         public async Task<bool> SaveAllAsync()
