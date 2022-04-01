@@ -6,6 +6,8 @@ export interface Member {
   photoUrl: string
   created: Date
   lastActive: Date
+  location: string
+  about: string
   photos: Photo[]
 }
 

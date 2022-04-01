@@ -13,6 +13,8 @@ namespace API.Entities
         public byte[] PasswordSalt { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
+        public string Location { get; set; }
+        public string About { get; set; }
         public ICollection<PhotoUser> Photos { get; set; }
     }
 }

@@ -13,6 +13,8 @@ namespace API.DTOs
         public string PhotoUrl { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
+        public string Location { get; set; }
+        public string About { get; set; }
         public ICollection<PhotoUserDto> Photos { get; set; }
     }
 }
