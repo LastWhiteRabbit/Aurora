@@ -5,6 +5,7 @@ import {ToastrModule} from "ngx-toastr";
 import {TabsModule} from "ngx-bootstrap/tabs";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {PaginationModule} from "ngx-bootstrap/pagination";
+import {FileUploadModule} from "ng2-file-upload";
 
 
 
@@ -18,14 +19,16 @@ import {PaginationModule} from "ngx-bootstrap/pagination";
     }),
     TabsModule.forRoot(),
     NgxSpinnerModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    FileUploadModule
   ],
   exports:[
     BsDropdownModule,
     ToastrModule,
     TabsModule,
     NgxSpinnerModule,
-    PaginationModule
+    PaginationModule,
+    FileUploadModule
   ]
 })
 export class SharedModule { }
