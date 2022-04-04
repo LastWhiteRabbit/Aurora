@@ -4,6 +4,7 @@ import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {ToastrModule} from "ngx-toastr";
 import {TabsModule} from "ngx-bootstrap/tabs";
 import {NgxSpinnerModule} from "ngx-spinner";
+import {PaginationModule} from "ngx-bootstrap/pagination";
 
 
 
@@ -16,13 +17,15 @@ import {NgxSpinnerModule} from "ngx-spinner";
       positionClass: 'toast-bottom-right'
     }),
     TabsModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    PaginationModule.forRoot()
   ],
   exports:[
     BsDropdownModule,
     ToastrModule,
     TabsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    PaginationModule
   ]
 })
 export class SharedModule { }
