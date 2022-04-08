@@ -33,9 +33,22 @@ namespace API.Data
 
         public async Task<IEnumerable<TrackDto>> GetTracksAsync()
         {
-            var result = await _context.Tracks.ToListAsync();
+            var result = await _context.TrackGenres
+                .Include(x => x.Track)
+                .ThenInclude(x=>x.Artists)
+                .ThenInclude(x=>x.Artist)
+                .Include(x => x.Genre)
+                .ToListAsync();
 
-            return _mapper.Map<List<TrackDto>>(result);
+            var test = await _context.Tracks
+                .Include(x => x.Artists)
+                    .ThenInclude(x => x.Artist)
+                .Include(x => x.Genres)
+                    .ThenInclude(x => x.Genre)
+                .ToListAsync();
+
+            return  _mapper.Map<IEnumerable<TrackDto>>(test);
+
         }
 
         public async Task<bool> SaveAllAsync()

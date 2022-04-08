@@ -21,7 +21,7 @@ namespace API.Controllers
         }
         
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Track>>> GetTracks()
+        public async Task<ActionResult<IEnumerable<TrackDto>>> GetTracks()
         {
             var tracks = await _trackRepository.GetTracksAsync();
             return Ok(tracks);
