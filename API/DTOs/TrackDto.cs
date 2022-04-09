@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API.DTOs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +17,7 @@ namespace API.Entities
         [DisplayName("Track length")]
         public string Length { get; set; }
         public string About { get; set; }
-        public ICollection<TrackGenre> Genres { get; set; }
-        public ICollection<TrackArtist> Artists { get; set; }
+        public ICollection<TrackGenreDto> Genres { get; set; }
+        public ICollection<TrackArtistDto> Artists { get; set; }
     }
 }

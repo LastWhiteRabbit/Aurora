@@ -18,7 +18,9 @@ namespace API.Helpers
             CreateMap<Track, TrackDto>();
             CreateMap<AppUserUpdateDto, AppUser>();
             CreateMap<RegisterDto, AppUser>();
-            CreateMap<TrackGenre, TrackDto>();
+            //CreateMap<TrackGenre, TrackDto>();
+            CreateMap<TrackGenre, TrackGenreDto>();
+            CreateMap<TrackArtist, TrackArtistDto>();
         }
 
     }
