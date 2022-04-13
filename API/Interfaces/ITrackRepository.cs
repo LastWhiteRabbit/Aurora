@@ -12,7 +12,8 @@ namespace API.Interfaces
 
         Task<bool> SaveAllAsync();
         Task<IEnumerable<TrackDto>> GetTracksAsync();
-        Task<Track> GetTrackByIdAsync(int id);
-        Task<Track> GetTrackByNameAsync(string name);
+        Task<TrackDto> GetTrackByIdAsync(int id);
+        Task<TrackDto> GetTrackByNameAsync(string name);
+        Task<bool> AddNewTrack(TrackDto track);
     }
 }

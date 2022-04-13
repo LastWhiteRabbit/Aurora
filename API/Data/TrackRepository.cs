@@ -20,40 +20,46 @@ namespace API.Data
             _mapper = mapper;
         }
 
-        public async Task<Track> GetTrackByIdAsync(int id)
+        public async Task<TrackDto> GetTrackByIdAsync(int id)
         {
-            return await _context.Tracks.FindAsync(id);
+            var track = await _context.Tracks.FindAsync(id);
+
+            return _mapper.Map<TrackDto>(track);
         }
 
-        public async Task<Track> GetTrackByNameAsync(string name)
+        public async Task<TrackDto> GetTrackByNameAsync(string name)
         {
-            return await _context.Tracks
+            var track = await _context.Tracks
+                .Include(x=>x.Genres)
+                    .ThenInclude(x=>x.Genre)
+                .Include(x=>x.Artists)
+                    .ThenInclude(x=>x.Artist)
                 .SingleOrDefaultAsync(x => x.TrackName == name);
+
+            return _mapper.Map<TrackDto>(track);
         }
 
         public async Task<IEnumerable<TrackDto>> GetTracksAsync()
         {
-            var result = await _context.TrackGenres
-                .Include(x => x.Track)
-                .ThenInclude(x=>x.Artists)
-                .ThenInclude(x=>x.Artist)
-                .Include(x => x.Genre)
-                .ToListAsync();
-
-            var test = await _context.Tracks
+            var result = await _context.Tracks
                 .Include(x => x.Artists)
                     .ThenInclude(x => x.Artist)
                 .Include(x => x.Genres)
                     .ThenInclude(x => x.Genre)
                 .ToListAsync();
 
-            return  _mapper.Map<IEnumerable<TrackDto>>(test);
-
+            return  _mapper.Map<IEnumerable<TrackDto>>(result);
         }
 
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> AddNewTrack(TrackDto track)
+        {
+            var temp = await _context.AddAsync(_mapper.Map<Track>(track));
+            return await SaveAllAsync();
         }
 
         public void Update(Track track)

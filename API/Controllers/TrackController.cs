@@ -27,9 +27,16 @@ namespace API.Controllers
             return Ok(tracks);
         }
         [HttpGet("{trackName}")]
-        public async Task<ActionResult<Track>> GetTracks(string trackName)
+        public async Task<ActionResult<TrackDto>> GetTrack(string trackName)
         {
             return await _trackRepository.GetTrackByNameAsync(trackName);
+        }
+
+
+        [HttpPost("add-new-track")]
+        public async Task<ActionResult<bool>> AddTrack(TrackDto track)
+        {
+            return await _trackRepository.AddNewTrack(track);
         }
 
     }
