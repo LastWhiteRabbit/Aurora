@@ -19,5 +19,6 @@ namespace API.Entities
         public string About { get; set; }
         public ICollection<TrackGenreDto> Genres { get; set; }
         public ICollection<TrackArtistDto> Artists { get; set; }
+        public string PhotoURL { get; set; }
     }
 }

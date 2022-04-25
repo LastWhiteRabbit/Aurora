@@ -24,6 +24,8 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import {LoadingInterceptor} from "./_interceptors/loading.interceptor";
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import {TrackListComponent} from "./tracks/track-list/track-list.component";
+import {TrackCardComponent} from "./tracks/track-card/track-card.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     MemberCardComponent,
     MemberEditComponent,
     TextInputComponent,
-    PhotoEditorComponent
+    PhotoEditorComponent,
+    TrackListComponent,
+    TrackCardComponent
   ],
   imports: [
     BrowserModule,

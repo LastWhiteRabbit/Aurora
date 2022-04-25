@@ -1,11 +1,23 @@
 <div class="card mb-4">
   <div class="card-img-wrapper">
-    <img src="{{track.album.cover.url}}" alt={{track.trackName}} class="card-img-top">
+    <img src="{{track.photoURL || './assets/user.png'}}" alt="{{track.trackName}}" class="card-img-top">
+    <ul class="list-inline member-icons animate text-center">
+      <li class="list-inline-item">
+        <button routerLink="/tracks/{{track.trackName}}" class="btn btn-primary"><i class="fa fa-edit"></i> </button>
+      </li>
+
+      <li class="list-inline-item">
+        <button class="btn btn-primary"><i class="fa fa-heart"></i> </button>
+      </li>
+
+      <li class="list-inline-item">
+        <button class="btn btn-primary"><i class="fa fa-play"></i> </button>
+      </li>
+    </ul>
   </div>
   <div class="card-body p-1">
-    <h6 class="card-title text-center mb-1"><i class="fa fa-user mr-2"></i>
+    <h6 class="card-title text-center mb-1"><i class="fa fa-music mr-2"></i>
       {{track.trackName}}
     </h6>
-    <p class="card-text text-muted text-center">{{track.about}}</p>
   </div>
 </div>

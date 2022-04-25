@@ -1,4 +1,5 @@
 ﻿using API.Entities;
+using API.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace API.Interfaces
         Task<TrackDto> GetTrackByIdAsync(int id);
         Task<TrackDto> GetTrackByNameAsync(string name);
         Task<bool> AddNewTrack(TrackDto track);
+        Task<PagedList<TrackDto>> GetTracksDtoAsync(UserParams userParams);
+
     }
 }

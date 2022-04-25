@@ -1,1 +1,19 @@
-<p>track-list works!</p>
+<div class="row">
+  <div  *ngFor="let track of tracks" class="col-2">
+    <app-track-card [track]="track"></app-track-card>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="pagination">
+  <pagination [boundaryLinks]="true"
+              [totalItems]="pagination.totalItems"
+              [itemsPerPage]="pagination.itemsPerPage"
+              [(ngModel)]="pagination.currentPage"
+              (pageChanged)="pageChanged($event)"
+              previousText="&lsaquo;"
+              nextText="&rsaquo;"
+              firstText="&laquo;"
+              lastText="&raquo;">
+
+  </pagination>
+</div>

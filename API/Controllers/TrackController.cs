@@ -1,5 +1,6 @@
 ﻿using API.Data;
 using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -20,12 +21,18 @@ namespace API.Controllers
             _trackRepository = trackRepository;
         }
         
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TrackDto>>> GetTracks()
+        public async Task<ActionResult<IEnumerable<TrackDto>>> GetUsers([FromQuery] UserParams userParams)
         {
-            var tracks = await _trackRepository.GetTracksAsync();
-            return Ok(tracks);
+            var users = await _trackRepository.GetTracksDtoAsync(userParams);
+
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+
+            return Ok(users);
         }
+
+
         [HttpGet("{trackName}")]
         public async Task<ActionResult<TrackDto>> GetTrack(string trackName)
         {

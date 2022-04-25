@@ -11,5 +11,6 @@ export interface Track {
     artist: Artist;
     album: Album;
     about: string;
+    photoURL: string;
   }
 

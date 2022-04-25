@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">Music App</a>
+    <a class="navbar-brand" routerLink="/">Aurora</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,6 +26,14 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
           </li>
+          <button class="fa fa-backward btn-secondary "></button>
+          <button class="fa fa-fast-backward btn-secondary"></button>
+          <button class="fa fa-play btn-light"></button>
+          <input type="range" class="form-range align-self-center" id="customRange1">
+          <button class="fa fa-fast-forward btn-secondary"></button>
+          <button class="fa fa-forward btn-secondary"></button>
+          <label class="form-label ">Brothers in Arms</label>
+
         </ng-container>
         <li *ngIf="(accountService.currentUser$  | async) === null" class="nav-item">
           <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>

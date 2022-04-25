@@ -1,6 +1,8 @@
 ﻿using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -49,6 +51,19 @@ namespace API.Data
                 .ToListAsync();
 
             return  _mapper.Map<IEnumerable<TrackDto>>(result);
+        }
+
+        public async Task<PagedList<TrackDto>> GetTracksDtoAsync(UserParams userParams)
+        {
+            var query = _context.Tracks
+                .Include(x => x.Artists)
+                    .ThenInclude(x => x.Artist)
+                .Include(x => x.Genres)
+                    .ThenInclude(x => x.Genre)
+                .ProjectTo<TrackDto>(_mapper.ConfigurationProvider)
+                .AsNoTracking();
+
+            return await PagedList<TrackDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<bool> SaveAllAsync()

@@ -20,5 +20,7 @@ namespace API.Entities
         public string About { get; set; }
         public ICollection<TrackGenre> Genres { get; set; }
         public ICollection<TrackArtist> Artists { get; set; }
+        public string PhotoURL { get; set; }
+
     }
 }
